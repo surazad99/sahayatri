@@ -22,3 +22,5 @@ Route::get('show-destinations/{package}', 'DestinationController@showDestination
 
 Route::post('select-package','PackageController@select');
 Route::get('show-images/{destination}', 'DestinationController@showImages');
+
+Route::get('user-groups/{user}','GroupController@showGroup');

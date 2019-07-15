@@ -60,19 +60,19 @@ class PackageController extends Controller
         
     }
 
-    public function isTherePackage($package_id)
+    protected function isTherePackage($package_id)
     {
         $package = Package::find($package_id);
         count($package->groups) > 0 ? true : false;
     }
 
-    public function addUserToGroup($user_id, $package_id)
+    protected function addUserToGroup($user_id, $package_id)
     {
         $group = Group::orderBy('id','desc')->where('package_id',$package_id)->first();
         $group->users()->attach($user_id);
     }
 
-    public function createGroup($user_id, $package_id)
+    protected function createGroup($user_id, $package_id)
     {
         $group = new Group;
         $group->package_id = $package_id;
