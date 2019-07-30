@@ -16,7 +16,10 @@ class DestinationResource extends JsonResource
     {
         return [
             'name' => $this->name,
-            'images' => url('/api/show-images',$this->id)
+            'images' => url('/api/show-images',$this->id),
+            'packages' => [
+                'link' => url('/api/show-packages',$this->id),
+            ]
         ];
     }
 }

@@ -18,7 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('show-package', 'PackageController@show');
+
 Route::get('show-destinations/{package}', 'DestinationController@showDestination');
+Route::get('show-destinations','DestinationController@index');
+Route::get('show-packages/{destination}','DestinationController@showPackages');
 
 Route::post('select-package','PackageController@select');
 Route::get('show-images/{destination}', 'DestinationController@showImages');

@@ -12,4 +12,9 @@ class Destination extends Model
     {
         return $this->hasMany('App\Image');
     }
+
+    public function packages()
+    {
+        return $this->belongsToMany('App\Package', 'package_destination');
+    }
 }

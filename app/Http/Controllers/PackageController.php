@@ -63,7 +63,7 @@ class PackageController extends Controller
     protected function isTherePackage($package_id)
     {
         $package = Package::find($package_id);
-        count($package->groups) > 0 ? true : false;
+        return count($package->groups) > 0 ? true : false;
     }
 
     protected function addUserToGroup($user_id, $package_id)

@@ -21,7 +21,7 @@ class GroupController extends Controller
     
     protected function hasGroup($user)
     {
-        count($user->groups) > 0 ? true : false;   
+        return count($user->groups) > 0 ? true : false;   
     }
 
     protected function showGroupUsers($group_id)

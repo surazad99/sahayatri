@@ -7,6 +7,7 @@ use App\Destination;
 use App\Image;
 use App\Package;
 use App\Http\Resources\DestinationResource;
+use App\Http\Resources\PackageResource;
 use App\Http\Resources\ImageResource;
 class DestinationController extends Controller
 {
@@ -52,5 +53,13 @@ class DestinationController extends Controller
     {
         //show the transformed destinations which is in array
         return DestinationResource::collection($package->destinations);
+    }
+    public function index()
+    {
+        return DestinationResource::collection(Destination::all());
+    }
+    public function showPackages(Destination $destination)
+    {
+        return PackageResource::collection($destination->packages);
     }
 }
