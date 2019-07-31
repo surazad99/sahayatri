@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use App\Http\Resources\UserResource;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    return new UserResource($request->user());
 });
 
 Route::get('show-package', 'PackageController@show');
@@ -27,3 +27,6 @@ Route::post('select-package','PackageController@select');
 Route::get('show-images/{destination}', 'DestinationController@showImages');
 
 Route::get('user-groups/{user}','GroupController@showGroup');
+
+Route::post('/register','Api\AuthController@register');
+Route::post('/login','Api\AuthController@login');
