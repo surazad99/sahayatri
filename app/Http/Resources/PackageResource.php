@@ -18,7 +18,7 @@ class PackageResource extends JsonResource
             'name' => $this->name,
             'num_of_days' => $this->num_of_days,
             //provide the link for the destinations array for particular package
-            'destinations' => url('/api/show-destinations',$this->id),
+            'destinations' => PackageDestinationResource::collection($this->destinations),
         ];
     }
 }

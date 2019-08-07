@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-
+use App\Image;
 class DestinationResource extends JsonResource
 {
     /**
@@ -15,8 +15,9 @@ class DestinationResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'name' => $this->name,
-            'images' => url('/api/show-images',$this->id),
+            'images' =>ImageResource::collection($this->images),
             'packages' => [
                 'link' => url('/api/show-packages',$this->id),
             ]

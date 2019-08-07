@@ -50,18 +50,13 @@ class AuthController extends Controller
         {
         //    return response('login success');
            
-        $client = new \GuzzleHttp\Client([
-            'base_uri' => 'http://localhost:8000',
-            'defaults' => [
-                'exceptions' => false
-            ]
-        ]);
+        $client = new Client;
 
-            $response = $client->post('/oauth/token', [
+            $response = $client->post(url('oauth/token'), [
                 'form_params' => [
                     'grant_type' => 'password',
                     'client_id' => '2',
-                    'client_secret' => '1WfG6WH78KR2g2OJDgV7lkocwHk9GuCV3TGplNRb',
+                    'client_secret' => 'f056em6oeNGXvKGSnDkSwp1ZTipS7Af8yTavudya',
                     'username' => $request->email,
                     'password' => $request->password,
                     'scope' => ''
