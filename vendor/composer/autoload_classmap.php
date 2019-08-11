@@ -6,6 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Bid' => $baseDir . '/app/Bid.php',
+    'App\\BidDetails' => $baseDir . '/app/BidDetails.php',
+    'App\\Bid_details' => $baseDir . '/app/Bid_details.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Destination' => $baseDir . '/app/Destination.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
@@ -16,6 +19,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\RegisterController' => $baseDir . '/app/Http/Controllers/Auth/RegisterController.php',
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
+    'App\\Http\\Controllers\\BidController' => $baseDir . '/app/Http/Controllers/BidController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\DestinationController' => $baseDir . '/app/Http/Controllers/DestinationController.php',
     'App\\Http\\Controllers\\GroupController' => $baseDir . '/app/Http/Controllers/GroupController.php',
@@ -29,9 +33,12 @@ return array(
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Http\\Resources\\BidDetailsResource' => $baseDir . '/app/Http/Resources/BidDetailsResource.php',
+    'App\\Http\\Resources\\BidResource' => $baseDir . '/app/Http/Resources/BidResource.php',
     'App\\Http\\Resources\\DestinationResource' => $baseDir . '/app/Http/Resources/DestinationResource.php',
     'App\\Http\\Resources\\GroupResource' => $baseDir . '/app/Http/Resources/GroupResource.php',
     'App\\Http\\Resources\\ImageResource' => $baseDir . '/app/Http/Resources/ImageResource.php',
+    'App\\Http\\Resources\\PackageDestinationResource' => $baseDir . '/app/Http/Resources/PackageDestinationResource.php',
     'App\\Http\\Resources\\PackageResource' => $baseDir . '/app/Http/Resources/PackageResource.php',
     'App\\Http\\Resources\\UserResource' => $baseDir . '/app/Http/Resources/UserResource.php',
     'App\\Image' => $baseDir . '/app/Image.php',

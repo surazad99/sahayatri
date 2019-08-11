@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Package;
 use Illuminate\Http\Resources\Json\JsonResource;
-class GroupResource extends JsonResource
+
+class BidDetailsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,10 +15,9 @@ class GroupResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'user_count' => count($this->users),
-            'package' => new PackageResource($this->package),
-            'users' => UserResource::collection($this->users),
-            'status' => 'found',
+            'attractions' => $this->attractions,
+            'facilities' => $this->facilities,
+            'price' => $this->price,
         ];
     }
 }

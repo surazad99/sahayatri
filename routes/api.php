@@ -30,3 +30,11 @@ Route::get('user-groups/{user}','GroupController@showGroup');
 
 Route::post('/register','Api\AuthController@register');
 Route::post('/login','Api\AuthController@login');
+
+Route::get('/package-details/{package}','PackageController@details');
+
+Route::post('/bid','BidController@store');
+Route::get('/show-bids','BidController@showBids');
+
+
+Route::get('/maley', 'PackageController@toMaley');

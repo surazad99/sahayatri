@@ -11,17 +11,32 @@ class GroupController extends Controller
 {
     public function showGroup(User $user)
     {
-        if($this->hasGroup($user));
-        {
-           
-            $group = $user->groups->last();
+        $group = $this->hasActiveGroup($user);
+        if($group)
+        {   
+            // return $grp_id;
             return new GroupResource($group);  
+        }
+        else
+        {
+            return '{
+                "data": 
+                    {
+                        "status": "empty",
+                        "message": "User Group Not Created"   
+                    }    
+                }';       
+            
         }
     }
     
-    protected function hasGroup($user)
+    protected function hasActiveGroup($user)
     {
-        return count($user->groups) > 0 ? true : false;   
+        $groups = $user->groups->where('is_active',1);
+        
+        if(count($groups)>0){
+            return $groups[0];
+        }
     }
 
     protected function showGroupUsers($group_id)
