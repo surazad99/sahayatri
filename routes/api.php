@@ -13,9 +13,12 @@ use App\Http\Resources\UserResource;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return new UserResource($request->user());
-});
+Route::group([
+    'middleware' => 'auth:api'
+        ], function() {
+      Route::get('logout', 'Api\AuthController@logout');
+      Route::get('user', 'Api\AuthController@user');
+  });
 
 Route::get('show-package', 'PackageController@show');
 
@@ -27,14 +30,21 @@ Route::post('select-package','PackageController@select');
 Route::get('show-images/{destination}', 'DestinationController@showImages');
 
 Route::get('user-groups/{user}','GroupController@showGroup');
+Route::get('active-groups','GroupController@showActiveGroups');
+
 
 Route::post('/register','Api\AuthController@register');
 Route::post('/login','Api\AuthController@login');
+Route::get('/logout/{user}','Api\AuthController@logout');
+
 
 Route::get('/package-details/{package}','PackageController@details');
 
 Route::post('/bid','BidController@store');
 Route::get('/show-bids','BidController@showBids');
+Route::get('/confirmed-group/{user}','GroupController@showConfirmedGroups');
+Route::get('/show-agent-user/{user}','GroupController@showAgentToUser');
+
 
 
 Route::get('/maley', 'PackageController@toMaley');

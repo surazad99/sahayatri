@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Dotenv\Regex\Success;
 use  GuzzleHttp\Client;
+use Illuminate\Support\Facades\DB;
+use App\Http\Resources\UserResource;
 
 class AuthController extends Controller
 {
@@ -43,7 +46,7 @@ class AuthController extends Controller
 
         $user = User::where('email',$request->email)->first();
         if(!$user){
-            return response(['status'=>'error','message'=>'user not found']);
+            return response(['status'=>'error','message'=>'user not found'],400);
         }
 
         if(Hash::check($request->password, $user->password))
@@ -60,11 +63,27 @@ class AuthController extends Controller
                     'username' => $request->email,
                     'password' => $request->password,
                     'scope' => ''
-
-        
                 ],
             ]);
             return response(['data' => json_decode((string) $response->getBody(), true)]);
         }
+        else
+        {
+            return response(['status'=>'error','message'=>'credentials do not match'],400);
+        }
+    }
+
+    public function logout(Request $request) {
+        // return Auth::user();
+        $request->user()->token()->revoke();
+
+        return response()->json([
+            'data' => 'Successfully logged out'
+        ]);
+    }
+
+    public function user(Request $request)
+    {
+        return new UserResource($request->user());
     }
 }

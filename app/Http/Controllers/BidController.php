@@ -21,16 +21,36 @@ class BidController extends Controller
         $details->bid_id = $bid->id;
         $details->attractions = $request->attractions;
         $details->facilities = $request->facilities;
+        $details->price = $request->price;
         $details->save();
         return response(['error'=>'success','message'=>'Bid Placed Successfully']);
     }
 
-    public function showBids()
+    public function showGroups()
     {
         
-        $activeGroups = Group::all()->where('is_active','1'); 
-        return view('admin.showBids')->with('activeGroups',$activeGroups);
+        $newBidGroups = Group::all()->where('bid_confirmed','0'); 
+        return view('admin.showGroups')->with('newBidGroups',$newBidGroups);
         // return BidResource::collection(Bid::all());
         
+    }
+
+    public function showBids(Group $group)
+    {
+        $bids = $group->bids;
+        // return $bids[0]->agency->name;
+        if(count($bids)>0)
+            return view('admin.showBids')->with('bids',$bids);
+        else
+            return back()->with('error','no bids is done to this group yet');
+    }
+
+    public function assignBid(Bid $bid)
+    {
+        $confirmedAgencyId = $bid->user_id;
+        $bid->group->agent_id = $confirmedAgencyId;
+        $bid->group->bid_confirmed = '1';
+        $bid->group->save();
+        return back()->with('success','Your bid has been done');
     }
 }

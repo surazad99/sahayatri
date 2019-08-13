@@ -39,8 +39,32 @@ class GroupController extends Controller
         }
     }
 
-    protected function showGroupUsers($group_id)
+    public function showActiveGroups()
     {
-        
+        $groups = Group::all()->where('bid_confirmed','0');
+        if(count($groups)>0)
+            return GroupResource::collection($groups);
+        else
+        {
+            return '{
+                "data": 
+                    {
+                        "status": "empty",
+                        "message": "No Group Found to Bid"   
+                    }    
+                }';
+        }
+    }
+
+    public function showConfirmedGroups(User $user)
+    {
+        return GroupResource::collection($user->group);  
+    }
+
+    public function showAgentToUser(User $user)
+    {
+        $groups = $user->groups->where('bid_confirmed','1');
+        // return $groups;
+        return new GroupResource($groups[0]);
     }
 }

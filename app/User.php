@@ -51,5 +51,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Bid');
     }
+
+    public function group()
+    {
+        return $this->hasMany('App\Group','agent_id');
+    }
 }   
 

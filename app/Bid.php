@@ -13,8 +13,13 @@ class Bid extends Model
        return $this->hasOne('App\BidDetails');
    }
 
-   public function user()
+   public function agency()
    {
-       return $this->belongsTo('App\User');
+       return $this->belongsTo('App\User','user_id');
+   }
+
+   public function group()
+   {
+       return $this->belongsTo('App\Group');
    }
 }

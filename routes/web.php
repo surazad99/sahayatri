@@ -19,7 +19,9 @@ Route::prefix('admin')->group(function () {
     Route::post('/add-destination', 'DestinationController@store')->name('destination.add');
     Route::get('/add-package', 'PackageController@add');
     Route::post('/store-package', 'PackageController@store');
-    ROute::get('/bids','BidController@showBids');
+    Route::get('/groups','BidController@showGroups');
+    Route::get('/bids/{group}','BidController@showBids');
+    Route::get('/assign-bid/{bid}','BidController@assignBid');
 });
 
 

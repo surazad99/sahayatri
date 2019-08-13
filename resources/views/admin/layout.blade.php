@@ -10,7 +10,9 @@
 </head>
 <body>
         <div class="container">
+        @include('admin.error')
         @yield('content')
         </div>
+        @yield('scripts')
 </body>
 </html>
